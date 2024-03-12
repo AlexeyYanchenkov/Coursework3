@@ -13,3 +13,4 @@ for i in operation_list[:5]:
     print(utils.get_first_line(i))
     print(utils.get_second_line(i))
     print(utils.get_third_line(i))
+    print("")
