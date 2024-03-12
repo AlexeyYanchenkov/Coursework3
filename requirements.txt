@@ -1,0 +1,9 @@
+coverage==7.4.3
+exceptiongroup==1.2.0
+iniconfig==2.0.0
+orjson==3.9.15
+packaging==24.0
+pluggy==1.4.0
+pytest==8.1.1
+pytest-cov==4.1.0
+tomli==2.0.1
