@@ -1,6 +1,4 @@
 from src.utils import get_first_line, get_second_line , get_file , get_third_line , get_operation_list
-import os
-
 
 coll = [
     {"date": "2019-08-26T10:50:58.294041", "state": "EXECUTED", },
