@@ -1,4 +1,4 @@
-from src import utils
+from src.utils import get_first_line, get_second_line , get_file , get_third_line , get_operation_list
 import os
 
 
@@ -30,7 +30,7 @@ amaunt_col = {"operationAmount": {"amount": "49192.52", "currency": {
 
 
 def test_get_file():
-    assert utils.get_file(PATH) == [{'id': 441945886, 'state': 'EXECUTED', 'date': '2019-08-26T10:50:58.294041',
+    assert get_file(PATH) == [{'id': 441945886, 'state': 'EXECUTED', 'date': '2019-08-26T10:50:58.294041',
                                      'operationAmount': {'amount': '31957.58',
                                      'currency': {'name': 'руб.', 'code': 'RUB'}},
                                      'description': 'Перевод организации', 'from': 'Maestro 1596837868705199',
@@ -38,21 +38,19 @@ def test_get_file():
 
 
 def test_get_operation_list():
-    assert utils.get_operation_list(coll) == [{"date": "2019-08-26T10:50:58.294041", "state": "EXECUTED", }]
+    assert get_operation_list(coll) == [{"date": "2019-08-26T10:50:58.294041", "state": "EXECUTED", }]
 
 
 def test_get_first_line():
-    assert utils.get_first_line(col_date) == '26.08.2019 Перевод организации'
+    assert get_first_line(col_date) == '26.08.2019 Перевод организации'
 
 
 def test_get_second_line():
-    assert utils.get_second_line(col_second_line) == 'Maestro 1596 83** **** 5199 -> Счет **9589'
-    assert utils.get_second_line(col_second_line1) == 'Счет **8655 -> Счет **8967'
-    assert utils.get_second_line(col_second_line2) == 'Visa Platinum 2256 48** **** 2539 -> Счет **9319'
-    assert utils.get_second_line(col_second_line3) == 'Счет **2883 -> Visa Classic 4195 19** **** 3802'
-    assert utils.get_second_line(col_second_line4) == '-> Visa Classic 4195 19** **** 3802'
+    assert get_second_line(col_second_line) == 'Maestro 1596 83** **** 5199 -> Счет **9589'
+    assert get_second_line(col_second_line1) == 'Счет **8655 -> Счет **8967'
+    assert get_second_line(col_second_line2) == 'Visa Platinum 2256 48** **** 2539 -> Счет **9319'
+    assert get_second_line(col_second_line3) == 'Счет **2883 -> Visa Classic 4195 19** **** 3802'
+    assert get_second_line(col_second_line4) == '-> Visa Classic 4195 19** **** 3802'
 
 def test_third_line():
-    assert utils.get_third_line(amaunt_col) == '49192.52 USD.'
-
-
+    assert get_third_line(amaunt_col) == '49192.52 USD.'
