@@ -1,4 +1,6 @@
-from src.utils import get_first_line, get_second_line, get_third_line, get_operation_list
+import os.path
+
+from src.utils import get_file, get_first_line, get_second_line, get_third_line, get_operation_list
 
 coll = [
     {"date": "2019-08-26T10:50:58.294041", "state": "EXECUTED", },
@@ -20,9 +22,18 @@ col_second_line3 = {"from": "Счет 17066032701791012883",
                     "to": "Visa Classic 4195191172583802"}
 col_second_line4 = {"to": "Visa Classic 4195191172583802"}
 
+PATH = os.path.join(os.path.dirname(__file__), 'test_json_file.json')
+
 amaunt_col = {"operationAmount": {"amount": "49192.52", "currency": {
     "name": "USD",
     "code": "USD"}}}
+
+def test_get_file():
+    assert get_file(PATH) == [{'id': 441945886, 'state': 'EXECUTED', 'date': '2019-08-26T10:50:58.294041',
+                                     'operationAmount': {'amount': '31957.58',
+                                     'currency': {'name': 'руб.', 'code': 'RUB'}},
+                                     'description': 'Перевод организации', 'from': 'Maestro 1596837868705199',
+                                     'to': 'Счет 64686473678894779589'}]
 
 def test_get_operation_list():
     assert get_operation_list(coll) == [{"date": "2019-08-26T10:50:58.294041", "state": "EXECUTED", }]
@@ -38,6 +49,7 @@ def test_get_second_line():
     assert get_second_line(col_second_line2) == 'Visa Platinum 2256 48** **** 2539 -> Счет **9319'
     assert get_second_line(col_second_line3) == 'Счет **2883 -> Visa Classic 4195 19** **** 3802'
     assert get_second_line(col_second_line4) == '-> Visa Classic 4195 19** **** 3802'
+
 
 def test_third_line():
     assert get_third_line(amaunt_col) == '49192.52 USD.'
